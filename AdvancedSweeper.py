@@ -5,6 +5,7 @@ import itertools
 
 pag.PAUSE = 0.001
 
+# 
 FRAME = 427, 152, 907, 408  # x_left, y_top, x_right, y_down
 SQUARE_SIZE = 16  # pixels
 FIELD_SIZE = 16, 30  # mines
@@ -19,7 +20,7 @@ def script():
     run_script = True
     check = 0
 
-    while run_script and check < 500:
+    while run_script and check < 100:
         img = ImageGrab.grab(bbox=FRAME)
         board = np.array(img)
 
@@ -71,7 +72,7 @@ def script():
                                 if [x, y] not in unopened_neighbours_coord:
                                     unopened_neighbours_coord.append([x, y])
 
-                        if len(unopened_cells_coord) >= 10:
+                        if len(unopened_cells_coord) >= 15:
                             unopened_cells_coord_group.append(unopened_cells_coord)
                             unopened_neighbours_coord_group.append(unopened_neighbours_coord)
                             unopened_cells_coord = []
