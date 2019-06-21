@@ -7,7 +7,7 @@ import itertools
 pag.PAUSE = 0.001
 
 
-DIFFICULTY = 'medium'
+DIFFICULTY = 'hard'
 SQUARE_SIZE = 16  # Pixels
 
 if DIFFICULTY == 'easy':
@@ -27,6 +27,8 @@ else:
 
 
 def script():
+    pag.click((FRAME[0] + FRAME[2]) // 2, (FRAME[1] + FRAME[3]) // 2)
+
     minefield = [[None for _ in range(FIELD_SIZE[1])] for _ in range(FIELD_SIZE[0])]
 
     mines_flagged = 0
@@ -34,7 +36,7 @@ def script():
     run_script = True
     check = 0
 
-    while run_script and check < 100:
+    while run_script and check < 150:
         img = ImageGrab.grab(bbox=FRAME)
         board = np.array(img)
 
