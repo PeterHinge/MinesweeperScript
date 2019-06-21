@@ -3,13 +3,27 @@ import numpy as np
 import pyautogui as pag
 import itertools
 
+
 pag.PAUSE = 0.001
 
-# 
-FRAME = 427, 152, 907, 408  # x_left, y_top, x_right, y_down
-SQUARE_SIZE = 16  # pixels
-FIELD_SIZE = 16, 30  # mines
-MINE_NUM = 99
+
+DIFFICULTY = 'medium'
+SQUARE_SIZE = 16  # Pixels
+
+if DIFFICULTY == 'easy':
+    FRAME = 444, 152, 588, 296  # x_left, y_top, x_right, y_down
+    FIELD_SIZE = 9, 9  # Height, Width
+    MINE_NUM = 10  # Mines
+
+elif DIFFICULTY == 'medium':
+    FRAME = 436, 152, 692, 408  # x_left, y_top, x_right, y_down
+    FIELD_SIZE = 16, 16  # Height, Width
+    MINE_NUM = 40  # Mines
+
+else:
+    FRAME = 427, 152, 907, 408  # x_left, y_top, x_right, y_down
+    FIELD_SIZE = 16, 30  # Height, Width
+    MINE_NUM = 99  # Mines
 
 
 def script():
@@ -105,7 +119,7 @@ def check_pixel_color(minefield, pixel, x, y):
 
 
 def is_inside_table(x, y):  # Checks if coordinates in inside board
-    return 0 <= x <= 15 and 0 <= y <= 29
+    return 0 <= x <= FIELD_SIZE[0] - 1 and 0 <= y <= FIELD_SIZE[1] - 1
 
 
 def get_valid_adjacent_tiles(x, y):  # Checks and return adjacent tiles
